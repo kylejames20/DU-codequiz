@@ -4,6 +4,7 @@ const questionContainerElement = document.getElementById("question-container")
 const questionElement = document.getElementById("question")
 const answerButtonsElement = document.getElementById("answer-buttons")
 
+let score = 0
 let shuffledQuestions, currentQuestionIndex
 let time = 60
 
@@ -19,6 +20,7 @@ function timer() {
             countdown()
         } else {
             clearInterval(clock)
+            endGame()
         }
     }, 1000)
 
@@ -40,12 +42,12 @@ function startGame() {
 function endGame() {
     
 
+
 }
 function setNextQuestion() {
     if(currentQuestionIndex > 4) {
         clearInterval(clock)
-        //to do an endfunction
-        return
+        endGame()
     }
     
     resetState()
@@ -91,11 +93,15 @@ function selectAnswer(e) {
 }
 
 function setStatusClass(element, correct) {
+    console.log(element)
     clearStatusClass(element)
     if (correct) {
         element.classList.add("correct")
         nextButton.classList.remove("hide")
+        score++
+        console.log(score)
     } else {
+        console.log(score)
         element.classList.add("wrong")
         time -= 5
         
@@ -107,6 +113,7 @@ function setStatusClass(element, correct) {
 }
 
 function clearStatusClass(element) {
+    console.log(element)
     element.classList.remove("correct")
     element.classList.remove("wrong")
 }
