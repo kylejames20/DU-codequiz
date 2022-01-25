@@ -1,6 +1,7 @@
 *, *::before, *::after {
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
+    
 }
 
 :root {
@@ -51,7 +52,7 @@ body.wrong {
     background-color: hsl(var(--hue), 100% 50%);
     border-radius: 5px;
     padding: 5px 10px;
-    color: white;
+    /* color: white; */
     outline: none;
 }
 
@@ -72,6 +73,7 @@ body.wrong {
     font-size: 1.5rem;
     font-weight: bold;
     padding: 10px 20px;
+    color: black;
 }
 
 .controls {

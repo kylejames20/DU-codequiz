@@ -10,4 +10,8 @@ Once all questions have been answered, the user will be allowed to enter their i
 
 Below, find attached links to Github repository and deployed finished project.
 
+![Code Quiz site screen shot]()
 
+[Live link to site](https://Users/kvc/code/homework/DU-codequiz/index.html)
+
+[Direct link to Github repository]()

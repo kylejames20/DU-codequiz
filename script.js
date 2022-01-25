@@ -5,22 +5,49 @@ const questionElement = document.getElementById("question")
 const answerButtonsElement = document.getElementById("answer-buttons")
 
 let shuffledQuestions, currentQuestionIndex
+let time = 60
 
 startButton.addEventListener("click", startGame)
 nextButton.addEventListener("click", () => {
 currentQuestionIndex++
 setNextQuestion()
 })
+function timer() {
+    const clock = setInterval(function(){
+        if (time > 0) {
+            time--
+            countdown()
+        } else {
+            clearInterval(clock)
+        }
+    }, 1000)
 
+}
+
+function countdown() {
+    const timerElement = document.getElementById("timer")
+    timerElement.innerText = time
+}
 function startGame() {
     startButton.classList.add("hide")
     shuffledQuestions = questions.sort()
     currentQuestionIndex = 0
+    timer()
     questionContainerElement.classList.remove("hide")
     setNextQuestion()
 }
 
+function endGame() {
+    
+
+}
 function setNextQuestion() {
+    if(currentQuestionIndex > 4) {
+        clearInterval(clock)
+        //to do an endfunction
+        return
+    }
+    
     resetState()
     showQuestion(shuffledQuestions[currentQuestionIndex])
 }
@@ -67,9 +94,16 @@ function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
         element.classList.add("correct")
+        nextButton.classList.remove("hide")
     } else {
         element.classList.add("wrong")
-    }
+        time -= 5
+        
+        if(time <= 5) {
+            time = 0
+        }
+        countdown()
+    } 
 }
 
 function clearStatusClass(element) {
@@ -81,10 +115,10 @@ const questions = [
 {
     question: "Commonly used data types DO NOT include:",
     answers: [
-        {text: "strings", correct: true },
-        {text: "booleans", correct: true },
-        {text: "alerts", correct: false },
-        {text: "numbers", correct: true }
+        {text: "strings", correct: false },
+        {text: "booleans", correct: false },
+        {text: "alerts", correct: true },
+        {text: "numbers", correct: false }
     ]
 },
 {
@@ -113,7 +147,7 @@ const questions = [
         {text: "quotes", correct: true },
         {text: "parentheses", correct: false }
     ]    
-}
+},
 {
     question: "Is coding super fun?",
     answers: [    
