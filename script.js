@@ -1,3 +1,4 @@
+//all the variables that will not change
 const startButton = document.getElementById("start-btn")
 const nextButton = document.getElementById("next-btn")
 const questionContainerElement = document.getElementById("question-container")
@@ -8,11 +9,13 @@ let score = 0
 let shuffledQuestions, currentQuestionIndex
 let time = 60
 
+//signifying clicking the buttons that the user will use to start game and proceed to next question after answering correctly
 startButton.addEventListener("click", startGame)
 nextButton.addEventListener("click", () => {
 currentQuestionIndex++
 setNextQuestion()
 })
+//the next two functions operate the seconds on the timer, allowing it to descend one second at a time
 function timer() {
     const clock = setInterval(function(){
         if (time > 0) {
@@ -30,6 +33,7 @@ function countdown() {
     const timerElement = document.getElementById("timer")
     timerElement.innerText = time
 }
+//allows the game to begin
 function startGame() {
     startButton.classList.add("hide")
     shuffledQuestions = questions.sort()
@@ -44,6 +48,7 @@ function endGame() {
 
 
 }
+//allows user to move to next question, while not allowing it to go more than the amount of questions available
 function setNextQuestion() {
     if(currentQuestionIndex > 4) {
         clearInterval(clock)
@@ -75,7 +80,7 @@ function resetState() {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
     }
 }
-
+//allows user to select their answer
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
@@ -91,7 +96,7 @@ function selectAnswer(e) {
     }
     
 }
-
+//if the user selects the wrong answer, this function will subtract 5 seconds
 function setStatusClass(element, correct) {
     console.log(element)
     clearStatusClass(element)
@@ -117,7 +122,7 @@ function clearStatusClass(element) {
     element.classList.remove("correct")
     element.classList.remove("wrong")
 }
-
+//the questions that will be presented to the user
 const questions = [
 {
     question: "Commonly used data types DO NOT include:",
