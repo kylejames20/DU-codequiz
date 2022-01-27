@@ -95,9 +95,23 @@ function startGame() {
 function highScorePage(event) {
     event.preventDefault()
     let username = document.getElementById("username").value
-    console.log(username)
-    
+    // let scoreobject = {username: time}
+    // localStorage.setItem(JSON.stringify(scoreobject))
+    localStorage.setItem(username, time)
+    showHighScore()
+}
 
+function showHighScore() {
+    document.getElementById("showHighScore").classList.remove("hide")
+    let topfive = document.getElementById("topfive")
+    let liElement = document.createElement("li") 
+    let localStorageScores = localStorage
+    for (let index = 0; index < 4; index++) {
+        let userScore = localStorageScores[Object.keys(localStorageScores)[index]]
+        let userName = Object.keys(localStorage) 
+        topfive.appendChild(liElement).textContent = userName[index] + "  " + userScore
+    }
+    
 }
 
 function endGame() {
